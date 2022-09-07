@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 
-project(shapes_task
+project(shapes2d_task
     VERSION 0.1
     DESCRIPTION "Shapes model and UI app"
     LANGUAGES CXX)

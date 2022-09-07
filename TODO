@@ -26,6 +26,9 @@ Misc:
 - [0] feat: ui: try use QML
 - [0] feat: icons for buttons
 - [1] feat: unit tests for model
+- [1] logging
+- [1] add TODO to cmake project some how
 - [2] feat: ui: translations
 - [2] CI in github
 - [2] support for qt6 and qt5
+- [2] add generation of import export headers in cmake
