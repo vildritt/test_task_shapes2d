@@ -1,21 +1,12 @@
 # Legend:
-
     x [p] prefix: description
-
         p - priority
         x = + done | - planned
-
-- [0] plot rev /
-- [0] extract composer code
-
-- [0] use deque for shapes?
 
 - [2] add translations
 - [2] feat: ui: try use QML
 - [2] logging
-- [2] feat: ui: translations
 - [2] CI in github
-- [2] support for qt6 and qt5
 - [2] add generation of import export headers in cmake
 
 - [3] precompiler headers for std: memory, functional, vector
@@ -24,3 +15,4 @@
 - [4] feat: icons for buttons
 ? [4] license
 ? [4] ccache
+

@@ -6,7 +6,16 @@ project(shapes2d_tests
     DESCRIPTION "Shapes tests"
     LANGUAGES CXX)
 
-find_package(Qt6 REQUIRED COMPONENTS Test)
+
+# Qt
+find_package(Qt6 COMPONENTS Test)
+if (Qt6_FOUND)
+    set(QT_COMPONENTS Qt6::Test)
+else()
+    find_package(Qt5 COMPONENTS Test REQUIRED)
+    set(QT_COMPONENTS Qt5::Test)
+endif()
+
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
@@ -15,6 +24,6 @@ add_executable(shapes2d_test_mso
     test_model_simple_operations.cpp)
 
 target_link_libraries(shapes2d_test_mso
-    PRIVATE Qt::Test shapes2d_model)
+    PRIVATE ${QT_COMPONENTS} shapes2d_model)
 
 add_test(NAME "model simple operations" COMMAND shapes2d_test_mso)

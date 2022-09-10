@@ -10,7 +10,9 @@ shapes2d::gui::MainWindow::MainWindow(Model *model)
     : m_model(model)
 {
     createWidgets();
+#if QT_VERSION >= QT_VERSION_CHECK(5,14,0)
     move(screen()->geometry().center() - frameGeometry().center());
+#endif
 }
 
 
@@ -107,12 +109,12 @@ void shapes2d::gui::MainWindow::makeAllShapesVisibleAndReplot() const
 QString shapes2d::gui::MainWindow::translateShapeName(const shape::RegistryIdentifier &id)
 {
 
-    //TODO 0: rethink. Bad solution because:
+    //TODO 1: rethink. Bad solution because:
     //  - manual listing for all available shapes
     //  - use of macro
     //  - shapes classes not checked for existence (used as strings)
 
-// here os check for class existence present - better than nothing...
+    // NOET: here is check for class existence present - better than nothing...
 #define REGISTER_SHAPE_TR(ClassName, TrName) \
     do { \
         assert(sizeof(ClassName) > 0); \

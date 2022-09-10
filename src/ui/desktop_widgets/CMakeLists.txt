@@ -12,14 +12,11 @@ set(CMAKE_AUTOMOC ON)
 
 set(SOURCES
     main.cpp
-    #main_form_controller.cpp
     shapes2d/gui/main_window.cpp
     shapes2d/gui/plot_area_widget.cpp
 )
 
 set(HEADERS
-    #main_form_controller.hpp
-    #shapes2d/gui/plotter.hpp
     shapes2d/gui/main_window.hpp
     shapes2d/gui/plot_area_widget.hpp
 )
@@ -32,11 +29,17 @@ add_executable(shapes2d_gui_desktop_widgets
 
 
 # Qt
-find_package(Qt6 6 COMPONENTS Gui Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Gui Widgets)
+if (Qt6_FOUND)
+    set(QT_COMPONENTS Qt6::Gui Qt6::Widgets)
+else()
+    find_package(Qt5 COMPONENTS Gui Widgets REQUIRED)
+    set(QT_COMPONENTS Qt5::Gui Qt5::Widgets)
+endif()
 
 target_link_libraries(shapes2d_gui_desktop_widgets
     PRIVATE
-        Qt6::Gui Qt6::Widgets
+        ${QT_COMPONENTS}
         shapes2d_model
 )
 
