@@ -9,6 +9,7 @@
 
 namespace shapes2d {
 
+// Encoded 0x00RRGGBB
 using Color = int32_t; // TODO 1: improve - make class?
 
 struct SHAPES2D_MODEL_EXPORT Colors {

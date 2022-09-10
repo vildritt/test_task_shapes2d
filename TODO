@@ -5,13 +5,12 @@
 
 - [2] add translations
 - [2] feat: ui: try use QML
-- [2] logging
-- [2] CI in github
 
 - [3] notes about solutions - with perspective to project grow
-- [3] check buildable on windows
 
+- [4] check buildable on windows
 - [4] feat: icons for buttons
+? [4] logging
 ? [4] license
-? [4] ccache
+? [4] CI in github
 

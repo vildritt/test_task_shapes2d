@@ -9,7 +9,7 @@
 class TestPlotter : public shapes2d::plotter::Plotter {
 public:
     int nCircles = 0;
-    int nFloods = 0;
+    int nPolygones = 0;
     int nLines = 0;
     int nMoves = 0;
     int nColorChanges = 0;
@@ -41,7 +41,7 @@ protected:
 
     void doPolygon(const std::vector<shapes2d::Point2D>& points) override
     {
-        ++nFloods;
+        ++nPolygones;
     }
 };
 
@@ -73,6 +73,7 @@ private slots:
         model.addShape<shapes2d::shapes::Circle>();
         model.addShape<shapes2d::shapes::EquilateralTriangle>();
 
+        //TODO 1: bad - manual id strings formed
         QVERIFY(model.shapesCount("shapes2d::shapes::Circle") == 2);
         QVERIFY(model.shapesCount("shapes2d::shapes::EquilateralTriangle") == 1);
         QVERIFY(model.shapesCount("shapes2d::shapes::rectangle") == 0);
@@ -93,7 +94,7 @@ private slots:
         auto* testPlotter = dynamic_cast<TestPlotter*>(plotter.get());
 
         QVERIFY(testPlotter->nCircles == 2);
-        QVERIFY(testPlotter->nLines == (4 + 3));
+        QVERIFY(testPlotter->nPolygones == 2);
     }
 
 };
