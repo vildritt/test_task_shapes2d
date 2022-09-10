@@ -124,6 +124,17 @@ void shapes2d::Model::plotScene(const plotter::PlotterPtr &plotter)
             shape->setBgColor(palette[idx++]);
         }
 
+        // rev x coordinate
+        for(const auto& shape : d_ptr->m_shapes) {
+            if (!shape->isVisible()) {
+                continue;
+            }
+
+            auto pt = shape->position();
+            pt.x = maxCoord.x - pt.x;
+            shape->setPosition(pt);
+        }
+
         const auto plotterSize = plotter->getSize();
         const double xScale = plotterSize.x / maxCoord.x;
         const double yScale = plotterSize.y / maxCoord.y;

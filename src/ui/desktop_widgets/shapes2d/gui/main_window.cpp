@@ -1,6 +1,7 @@
 #include "main_window.hpp"
 
 #include <shapes2d/shapes_registry.hpp>
+#include <shapes2d/shapes.hpp>
 
 #include <QScreen>
 
@@ -54,7 +55,8 @@ void shapes2d::gui::MainWindow::createWidgets()
             wgt->layout()->addWidget(btn);
             wgt->layout()->addWidget(lbl);
 
-            btn->setText(meta->id.c_str()); // TODO 0: tr
+
+            btn->setText(translateShapeName(meta->id));
             lbl->setAlignment(Qt::AlignHCenter);
             lbl->setText("0");
 
@@ -97,4 +99,37 @@ void shapes2d::gui::MainWindow::makeAllShapesVisibleAndReplot() const
 {
     m_model->showAllShapes();
     m_ui.graph->update();
+}
+
+
+QString shapes2d::gui::MainWindow::translateShapeName(const shape::RegistryIdentifier &id)
+{
+
+    //TODO 0: rethink. Bad solution because:
+    //  - manual listing for all available shapes
+    //  - use of macro
+    //  - shapes classes not checked for existence (used as strings)
+
+// here os check for class existence present - better than nothing...
+#define REGISTER_SHAPE_TR(ClassName, TrName) \
+    do { \
+        assert(sizeof(ClassName) > 0); \
+        reg(#ClassName, tr(TrName)); \
+    } while(0)
+
+    if (m_trShapesNames.empty()) {
+        auto reg = [this](const shape::RegistryIdentifier &id, const QString& translated) {
+            m_trShapesNames[id.c_str()] = translated;
+        };
+
+        REGISTER_SHAPE_TR(shapes2d::shapes::Circle, "Circle");
+        REGISTER_SHAPE_TR(shapes2d::shapes::Rectangle, "Rectrange");
+        REGISTER_SHAPE_TR(shapes2d::shapes::EquilateralTriangle, "Triangle");
+    }
+
+    const auto it = m_trShapesNames.find(id.c_str());
+    if (it != m_trShapesNames.end()) {
+        return it.value();
+    }
+    return id.c_str();
 }

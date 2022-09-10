@@ -5,27 +5,22 @@
         p - priority
         x = + done | - planned
 
-# Reqirements
+- [0] plot rev /
+- [0] extract composer code
 
-- [0] BL: btn [Plot] on press: do plot shapes in order of push. Plot them with shift to visualize order
+- [0] use deque for shapes?
 
-# Misc TODOs
-
-- [0] ui: fix buttons not extended
-- [0] feat: ui: try use QML
-- [0] feat: icons for buttons
-
-- [1] nice coloring
-- [1] use deque?
-
+- [2] add translations
+- [2] feat: ui: try use QML
 - [2] logging
 - [2] feat: ui: translations
 - [2] CI in github
 - [2] support for qt6 and qt5
 - [2] add generation of import export headers in cmake
-- [2] precompiler headers for std: memory, functional, vector
 
+- [3] precompiler headers for std: memory, functional, vector
 - [3] notes about solutions - with perspective to project grow
 
+- [4] feat: icons for buttons
 ? [4] license
 ? [4] ccache

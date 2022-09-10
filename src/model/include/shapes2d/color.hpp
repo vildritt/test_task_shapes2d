@@ -8,7 +8,7 @@
 
 namespace shapes2d {
 
-using Color = int32_t; // TODO 1: ref, make friendly class
+using Color = int32_t; // TODO 1: improve - make class?
 
 struct Colors {
     static const Color white;

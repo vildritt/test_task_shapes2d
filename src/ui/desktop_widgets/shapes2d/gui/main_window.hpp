@@ -47,11 +47,13 @@ private:
 
         QHash<QString, QLabel*> lblStats;
     } m_ui;
+    QHash<QString, QString> m_trShapesNames;
 
     ///
 
     void createWidgets();
     void makeAllShapesVisibleAndReplot() const;
+    QString translateShapeName(const shape::RegistryIdentifier &id);
 };
 
 
