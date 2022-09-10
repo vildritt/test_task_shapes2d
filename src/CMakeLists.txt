@@ -1,2 +1,2 @@
 add_subdirectory(model)
-add_subdirectory(ui/desktop)
+#add_subdirectory(ui)

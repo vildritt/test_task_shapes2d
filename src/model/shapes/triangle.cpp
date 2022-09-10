@@ -1,7 +1,12 @@
 #include <shapes2d/shapes/triangle.hpp>
 
 #include <shapes2d/plotter.hpp>
+#include "../shapes_registry.hpp"
+
 #include <cmath>
+
+
+S2D_SHAPE_REGITRATOR_HELPER_DEFAULT(shapes2d::shapes::EquilateralTriangle)
 
 
 void shapes2d::shapes::EquilateralTriangle::doPlot(const plotter::PlotterPtr &plotter)
@@ -15,7 +20,15 @@ void shapes2d::shapes::EquilateralTriangle::doPlot(const plotter::PlotterPtr &pl
 }
 
 
+const shapes2d::shape::MetaInfo *shapes2d::shapes::EquilateralTriangle::getMeta() const
+{
+    return &::metaInfo;
+}
+
+
 shapes2d::shapes::EquilateralTriangle::EquilateralTriangle(double m_edgeSize)
     : m_edgeSize(m_edgeSize)
 {
 }
+
+

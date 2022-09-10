@@ -14,6 +14,7 @@ class EquilateralTriangle : public shapes2d::Shape {
     double m_edgeSize;
 protected:
     void doPlot(const plotter::PlotterPtr &plotter) override;
+    const shape::MetaInfo* getMeta() const override;
 public:
     EquilateralTriangle(double m_edgeSize = shapes2d::Shape::kDefaultSize);
 };

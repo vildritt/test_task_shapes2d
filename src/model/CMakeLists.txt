@@ -10,16 +10,21 @@ set(SOURCES
     model.cpp
     shape.cpp
     plotter.cpp
+    shape_meta_info.cpp
+    shapes_registry.cpp
     shapes/triangle.cpp
     shapes/circle.cpp
     shapes/rectangle.cpp
 )
 
 
-set(HEADERS_PRIVATE
+set(HEADERS_PUBLIC
+    include/shapes2d/misc.hpp
     include/shapes2d/model.hpp
     include/shapes2d/plotter.hpp
     include/shapes2d/shape.hpp
+    include/shapes2d/shape_meta_info.hpp
+    include/shapes2d/shapes_registry.hpp
     include/shapes2d/shapes.hpp
     include/shapes2d/shapes/triangle.hpp
     include/shapes2d/shapes/circle.hpp
@@ -28,6 +33,7 @@ set(HEADERS_PRIVATE
 
 
 set(HEADERS_PRIVATE
+    shapes_registry.hpp
 )
 
 

@@ -13,6 +13,7 @@ class Circle : public shapes2d::Shape {
     double m_radius;
 protected:
     void doPlot(const plotter::PlotterPtr &plotter) override;
+    const shape::MetaInfo* getMeta() const override;
 public:
     static constexpr const double kDefaultRadius = shapes2d::Shape::kDefaultSize / 2.0;
     Circle(double radius = kDefaultRadius);

@@ -13,6 +13,7 @@ class Rectangle : public shapes2d::Shape {
     double m_size;
 protected:
     void doPlot(const plotter::PlotterPtr &plotter) override;
+    const shape::MetaInfo* getMeta() const override;
 public:
     Rectangle(double size = shapes2d::Shape::kDefaultSize);
 };
