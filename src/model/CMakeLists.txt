@@ -62,3 +62,8 @@ target_include_directories(shapes2d_model
 
 include(GenerateExportHeader)
 generate_export_header(shapes2d_model EXPORT_FILE_NAME include/shapes2d/export.h)
+
+
+target_precompile_headers(shapes2d_model
+    PRIVATE common.hpp
+)
