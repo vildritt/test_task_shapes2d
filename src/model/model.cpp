@@ -2,6 +2,7 @@
 #include <shapes2d/plotter.hpp>
 
 #include <vector>
+#include <list>
 #include <unordered_map>
 #include <typeinfo>
 #include <typeindex>
@@ -21,7 +22,7 @@ public:
     }
 
     // z ordered shapes
-    std::vector<ShapePtr> m_shapes;
+    std::list<ShapePtr> m_shapes;
     std::unordered_map<shape::RegistryIdentifier, int> m_stats;
     std::vector<Model::OnStatUpdate> m_statUpdateHandlers;
 
