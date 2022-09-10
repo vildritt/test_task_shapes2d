@@ -2,7 +2,9 @@
 #define SHAPES2D_MODEL_H
 #pragma once
 
+
 #include <memory>
+#include <functional>
 
 #include <shapes2d/shape.hpp>
 #include <shapes2d/plotter_ptr.hpp>
@@ -49,6 +51,11 @@ public:
         addShape(std::make_shared<T>());
     }
 
+    /**
+     * @brief make all shapes visible
+     */
+    void showAllShapes();
+
 
     /// scene plot
 
@@ -61,7 +68,10 @@ public:
 
     /// stats
 
-    int shapesCount(const shapes2d::shape::RegistryIdentifier& id) const;
+    int shapesCount(const shape::RegistryIdentifier& id) const;
+
+    using OnStatUpdate = std::function<void (const shape::RegistryIdentifier& id, int count)>;
+    void registerStatUpdateHandler(OnStatUpdate handler);
 
 private:
 

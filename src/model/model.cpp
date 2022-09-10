@@ -22,21 +22,43 @@ public:
 
     // z ordered shapes
     std::vector<ShapePtr> m_shapes;
-
     std::unordered_map<shape::RegistryIdentifier, int> m_stats;
+    std::vector<Model::OnStatUpdate> m_statUpdateHandlers;
 
     void clear()
     {
         m_shapes.clear();
+
+        std::vector<shape::RegistryIdentifier> ids;
+        ids.reserve(m_stats.size());
+        for(const auto& stat : m_stats) {
+            ids.push_back(stat.first);
+        }
+
         m_stats.clear();
-        //TODO 0: signalize about changes
+
+        for(const auto& id : ids) {
+            notifyStatUpdate(id);
+        }
     }
 
     void addShape(const ShapePtr &shape)
     {
         m_shapes.push_back(shape);
-        m_stats[shape->meta()->id]++;
-        //TODO 0: signalize about changes
+
+        // stat
+        {
+            const auto id = shape->meta()->id;
+            m_stats[id]++;
+            notifyStatUpdate(id);
+        }
+    }
+
+    void notifyStatUpdate(const shape::RegistryIdentifier& id)
+    {
+        for(const auto& handler : m_statUpdateHandlers) {
+            handler(id, q_ptr->shapesCount(id));
+        }
     }
 };
 
@@ -68,16 +90,51 @@ void shapes2d::Model::addShape(const ShapePtr &shape)
 }
 
 
+void shapes2d::Model::showAllShapes()
+{
+    for(auto& shape : d_ptr->m_shapes) {
+        shape->setVisible(true);
+    }
+}
+
+
 void shapes2d::Model::plotScene(const plotter::PlotterPtr &plotter)
 {
     assert(plotter && "plotter required");
 
+    // simple composer // TODO 1: extract as strategy composer
+    {
+        shapes2d::Palette palette = shapes2d::Palette::defaultPalette();
+
+        Point2D prevShapeCenter;
+        Point2D maxCoord;
+        int idx = 0;
+        for(const auto& shape : d_ptr->m_shapes) {
+            if (!shape->isVisible()) {
+                continue;
+            }
+            const auto br = shape->boundingRect();
+            const auto shapeHalfSize = br.size() / 2.0;
+
+            prevShapeCenter = prevShapeCenter + shapeHalfSize;
+            maxCoord = prevShapeCenter + shapeHalfSize;
+
+            shape->setPosition(prevShapeCenter);
+            shape->setFgColor(Colors::black);
+            shape->setBgColor(palette[idx++]);
+        }
+
+        const auto plotterSize = plotter->getSize();
+        const double xScale = plotterSize.x / maxCoord.x;
+        const double yScale = plotterSize.y / maxCoord.y;
+        const double scale = std::min(xScale, yScale);
+        plotter->setScale(scale);
+    }
+
     for(const auto& shape : d_ptr->m_shapes) {
-        //TODO 0: setup scales
-        //TODO 0: move current point on each draw
-        //TODO 0: decide where to place curent point for each fogure
-        //TODO 0: explore figures sized and eval points for drawing
-        shape->plot(plotter);
+        if (shape->isVisible()) {
+            shape->plot(plotter);
+        }
     }
 }
 
@@ -89,4 +146,10 @@ int shapes2d::Model::shapesCount(const shape::RegistryIdentifier &id) const
         return 0;
     }
     return it->second;
+}
+
+
+void shapes2d::Model::registerStatUpdateHandler(OnStatUpdate handler)
+{
+    d_ptr->m_statUpdateHandlers.push_back(handler);
 }

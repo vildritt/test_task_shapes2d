@@ -9,6 +9,7 @@ project(shapes2d_task
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(BUILD_SHARED_LIBS ON)
 
 # sub projects
 

@@ -14,17 +14,22 @@ public:
     int nMoves = 0;
     int nColorChanges = 0;
 protected:
-    void doSetColor(shapes2d::plotter::Color color) override
+    void doSetFgColor(shapes2d::Color color) override
     {
         ++nColorChanges;
     }
 
-    void doMoveTo(double x, double y) override
+    void doSetBgColor(shapes2d::Color color) override
+    {
+        ++nColorChanges;
+    }
+
+    void doMoveTo(const shapes2d::Point2D& pt) override
     {
         ++nMoves;
     }
 
-    void doLineTo(double x, double y) override
+    void doLineTo(const shapes2d::Point2D& pt) override
     {
         ++nLines;
     }
@@ -34,7 +39,7 @@ protected:
         ++nCircles;
     }
 
-    void doFlood() override
+    void doPolygon(const std::vector<shapes2d::Point2D>& points) override
     {
         ++nFloods;
     }

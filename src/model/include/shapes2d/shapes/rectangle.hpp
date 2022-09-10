@@ -2,6 +2,7 @@
 #define SHAPES2D_SHAPES_RECTANGLE_H
 #pragma once
 
+
 #include <shapes2d/shape.hpp>
 
 
@@ -14,6 +15,7 @@ class Rectangle : public shapes2d::Shape {
 protected:
     void doPlot(const plotter::PlotterPtr &plotter) override;
     const shape::MetaInfo* getMeta() const override;
+    Rect2D doGetBoundingRect() const override;
 public:
     Rectangle(double size = shapes2d::Shape::kDefaultSize);
 };

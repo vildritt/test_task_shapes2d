@@ -1,26 +1,36 @@
 #include <shapes2d/plotter.hpp>
 
 
-void shapes2d::plotter::Plotter::setColor(Color color)
+shapes2d::plotter::Plotter::Plotter()
 {
-    m_state.color = color;
-    doSetColor(color);
 }
 
 
-void shapes2d::plotter::Plotter::moveTo(double x, double y)
+void shapes2d::plotter::Plotter::setFgColor(Color color)
 {
-    doMoveTo(x, y);
-    m_state.x = x;
-    m_state.y = y;
+    m_state.fgColor = color;
+    doSetFgColor(color);
 }
 
 
-void shapes2d::plotter::Plotter::lineTo(double x, double y)
+void shapes2d::plotter::Plotter::setBgColor(Color color)
 {
-    doLineTo(x, y);
-    m_state.x = x;
-    m_state.y = y;
+    m_state.bgColor = color;
+    doSetBgColor(color);
+}
+
+
+void shapes2d::plotter::Plotter::moveTo(const Point2D &pt)
+{
+    doMoveTo(pt);
+    m_state.pt = pt;
+}
+
+
+void shapes2d::plotter::Plotter::lineTo(const Point2D &pt)
+{
+    doLineTo(pt);
+    m_state.pt = pt;
 }
 
 
@@ -30,16 +40,22 @@ void shapes2d::plotter::Plotter::circle(double radius)
 }
 
 
-void shapes2d::plotter::Plotter::flood()
+void shapes2d::plotter::Plotter::polygon(const std::vector<shapes2d::Point2D>& points)
 {
-    doFlood();
+    doPolygon(points);
 }
 
 
-void shapes2d::plotter::Plotter::relativeLineTo(double rx, double ry)
+shapes2d::Size2D shapes2d::plotter::Plotter::getSize() const
+{
+    return doGetSize();
+}
+
+
+void shapes2d::plotter::Plotter::relativeLineTo(const Point2D &pt)
 {
     const auto& s = state();
-    lineTo(s.x + rx, s.y + ry);
+    lineTo(s.pt + pt);
 }
 
 
@@ -47,3 +63,22 @@ const shapes2d::plotter::Plotter::State& shapes2d::plotter::Plotter::state() con
 {
     return m_state;
 }
+
+
+shapes2d::plotter::Plotter::State &shapes2d::plotter::Plotter::state()
+{
+    return m_state;
+}
+
+
+void shapes2d::plotter::Plotter::setScale(double scale)
+{
+    m_state.scale = scale;
+}
+
+
+shapes2d::Size2D shapes2d::plotter::Plotter::doGetSize() const
+{
+    return {0.0, 0.0};
+}
+

@@ -1,5 +1,7 @@
 #ifndef SHAPES2D_SHAPES_REGISTRY_H_PRIVATE
 #define SHAPES2D_SHAPES_REGISTRY_H_PRIVATE
+#pragma once
+
 
 #include <shapes2d/shapes_registry.hpp>
 
@@ -63,4 +65,5 @@ const struct Registrator : public Helper {                            \
 } // shape
 } // ns shapes2d
 
-#endif // #ifndef SHAPES2D_SHAPES_REGISTRY_H_PRIVATE
+
+#endif // SHAPES2D_SHAPES_REGISTRY_H_PRIVATE

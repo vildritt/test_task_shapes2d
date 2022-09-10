@@ -2,6 +2,7 @@
 #define SHAPES2D_SHAPES_CIRCLE_H
 #pragma once
 
+
 #include <shapes2d/shape.hpp>
 
 
@@ -14,6 +15,7 @@ class Circle : public shapes2d::Shape {
 protected:
     void doPlot(const plotter::PlotterPtr &plotter) override;
     const shape::MetaInfo* getMeta() const override;
+    Rect2D doGetBoundingRect() const override;
 public:
     static constexpr const double kDefaultRadius = shapes2d::Shape::kDefaultSize / 2.0;
     Circle(double radius = kDefaultRadius);

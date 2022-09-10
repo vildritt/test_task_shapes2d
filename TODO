@@ -7,39 +7,25 @@
 
 # Reqirements
 
-- [0] ui: app with 3 buttons (right pane): [triange], [circle], [square]. 
-- [0] ui: under each button - label with count stat
-- [0] ui: two button at bottom: [Plot] [Clear]
-- [0] BL: btn with shape on press: push shape to ordered container 
-- [0] BL: lbl under btn show stats: btn presse count (or m.b. count of shapes with spec kind in container?) 
 - [0] BL: btn [Plot] on press: do plot shapes in order of push. Plot them with shift to visualize order
-- [0] BL: btn [Clear] on press: clear conteiner and screen (also lables?)
-
-# Special reqirements
-
-- [1] use "rubber" ui 
-- [1] build ui without designer - hard code it
 
 # Misc TODOs
 
+- [0] ui: fix buttons not extended
 - [0] feat: ui: try use QML
 - [0] feat: icons for buttons
-- [1] feat: shapes registry to dynamically create buttons. but how to bind with icons? Nee dregisty with shape encoded names
-- [1] feat: unit tests for model
-- [1] logging
+
+- [1] nice coloring
+- [1] use deque?
+
+- [2] logging
 - [2] feat: ui: translations
 - [2] CI in github
 - [2] support for qt6 and qt5
 - [2] add generation of import export headers in cmake
 - [2] precompiler headers for std: memory, functional, vector
-- [3] ccache
+
 - [3] notes about solutions - with perspective to project grow
-- [4] license
-- [4] nice coloring
-- [4] check all vdtors
 
-# Done
-
-+ [1] add TODO to cmake project some how
-+ [1] plot shapes "manually" do not use images (vector or raster)
-+ [1] do not use manual memory managment, no memory leaks are allowed
+? [4] license
+? [4] ccache

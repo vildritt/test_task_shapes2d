@@ -1,5 +1,7 @@
 #ifndef SHAPES2D_SHAPE_META_INFO_H
 #define SHAPES2D_SHAPE_META_INFO_H
+#pragma once
+
 
 #include <memory>
 #include <string>

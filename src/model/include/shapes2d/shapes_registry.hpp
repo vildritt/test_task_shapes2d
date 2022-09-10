@@ -1,5 +1,7 @@
 #ifndef SHAPES2D_SHAPES_REGISTRY_H
 #define SHAPES2D_SHAPES_REGISTRY_H
+#pragma once
+
 
 #include <memory>
 #include <vector>
@@ -49,4 +51,4 @@ private:
 } // ns shapes2d
 
 
-#endif // #ifndef SHAPES2D_SHAPES_REGISTRY_H
+#endif // SHAPES2D_SHAPES_REGISTRY_H

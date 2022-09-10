@@ -9,6 +9,7 @@ S2D_SHAPE_REGITRATOR_HELPER_DEFAULT(shapes2d::shapes::Circle)
 
 void shapes2d::shapes::Circle::doPlot(const plotter::PlotterPtr &plotter)
 {
+    plotter->moveTo(position());
     plotter->circle(m_radius);
 }
 
@@ -16,6 +17,12 @@ void shapes2d::shapes::Circle::doPlot(const plotter::PlotterPtr &plotter)
 const shapes2d::shape::MetaInfo *shapes2d::shapes::Circle::getMeta() const
 {
     return &::metaInfo;
+}
+
+
+shapes2d::Rect2D shapes2d::shapes::Circle::doGetBoundingRect() const
+{
+    return Rect2D::fromCenterAndSizes(position(), Size2D{m_radius, m_radius} * 2.0);
 }
 
 
