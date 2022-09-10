@@ -3,10 +3,13 @@
 #pragma once
 
 
+#include <shapes2d/export.h>
+
+
 namespace shapes2d {
 
 
-struct Point2D {
+struct SHAPES2D_MODEL_EXPORT Point2D {
     double x = 0.0;
     double y = 0.0;
 
@@ -26,7 +29,7 @@ struct Point2D {
 using Size2D = Point2D;
 
 
-struct Rect2D {
+struct SHAPES2D_MODEL_EXPORT Rect2D {
     Point2D leftTop;
     Point2D rightBottom;
 
@@ -50,10 +53,10 @@ struct Rect2D {
 };
 
 
-Point2D operator-(const Point2D& a, const Point2D& b);
-Point2D operator+(const Point2D& a, const Point2D& b);
-Point2D operator/(const Point2D& a, double b);
-Point2D operator*(const Point2D& a, double b);
+Point2D SHAPES2D_MODEL_EXPORT operator-(const Point2D& a, const Point2D& b);
+Point2D SHAPES2D_MODEL_EXPORT operator+(const Point2D& a, const Point2D& b);
+Point2D SHAPES2D_MODEL_EXPORT operator/(const Point2D& a, double b);
+Point2D SHAPES2D_MODEL_EXPORT operator*(const Point2D& a, double b);
 
 
 } // ns shapes2d

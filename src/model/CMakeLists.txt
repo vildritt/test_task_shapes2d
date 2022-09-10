@@ -41,6 +41,7 @@ set(HEADERS_PUBLIC
 
 set(HEADERS_PRIVATE
     shapes_registry.hpp
+    "${CMAKE_CURRENT_BINARY_DIR}/include/shapes2d/export.h"
 )
 
 
@@ -53,5 +54,11 @@ add_library(shapes2d_model
 
 target_include_directories(shapes2d_model
     PRIVATE  ${CMAKE_CURRENT_SOURCE_DIR}
-    PUBLIC   ${CMAKE_CURRENT_SOURCE_DIR}/include
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/include"
+        "${CMAKE_CURRENT_BINARY_DIR}/include"
 )
+
+
+include(GenerateExportHeader)
+generate_export_header(shapes2d_model EXPORT_FILE_NAME include/shapes2d/export.h)

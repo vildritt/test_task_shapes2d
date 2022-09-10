@@ -4,13 +4,14 @@
 
 
 #include <shapes2d/shape.hpp>
+#include <shapes2d/export.h>
 
 
 namespace shapes2d {
 namespace shapes {
 
 
-class Circle : public shapes2d::Shape {
+class SHAPES2D_MODEL_EXPORT Circle : public shapes2d::Shape {
     double m_radius;
 protected:
     void doPlot(const plotter::PlotterPtr &plotter) override;

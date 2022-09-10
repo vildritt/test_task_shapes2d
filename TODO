@@ -7,10 +7,10 @@
 - [2] feat: ui: try use QML
 - [2] logging
 - [2] CI in github
-- [2] add generation of import export headers in cmake
 
 - [3] precompiler headers for std: memory, functional, vector
 - [3] notes about solutions - with perspective to project grow
+- [3] check buildable on windows
 
 - [4] feat: icons for buttons
 ? [4] license

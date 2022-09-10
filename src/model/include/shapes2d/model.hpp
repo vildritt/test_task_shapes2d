@@ -9,6 +9,7 @@
 #include <shapes2d/shape.hpp>
 #include <shapes2d/plotter_ptr.hpp>
 #include <shapes2d/scene_composer.hpp>
+#include <shapes2d/export.h>
 
 
 namespace shapes2d {
@@ -19,7 +20,7 @@ class ModelPrivate;
 /**
  * @brief Shapes2D: scene of 2d simple shapes
  */
-class Model {
+class SHAPES2D_MODEL_EXPORT Model {
 public:
     Model();
     ~Model();

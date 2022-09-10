@@ -12,12 +12,13 @@
 #include <shapes2d/misc.hpp>
 #include <shapes2d/color.hpp>
 #include <shapes2d/vector2d.hpp>
+#include <shapes2d/export.h>
 
 
 namespace shapes2d {
 namespace plotter {
 
-class Plotter {
+class SHAPES2D_MODEL_EXPORT Plotter {
 public:
     Plotter();
     virtual ~Plotter() {}

@@ -4,19 +4,20 @@
 
 #include <cstdint>
 #include <vector>
+#include <shapes2d/export.h>
 
 
 namespace shapes2d {
 
 using Color = int32_t; // TODO 1: improve - make class?
 
-struct Colors {
+struct SHAPES2D_MODEL_EXPORT Colors {
     static const Color white;
     static const Color black;
 };
 
 
-struct Palette {
+struct SHAPES2D_MODEL_EXPORT Palette {
     std::vector<Color> colors;
 
     Color operator[](int index) const;

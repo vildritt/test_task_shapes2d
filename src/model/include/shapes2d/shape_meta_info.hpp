@@ -8,6 +8,7 @@
 
 #include <shapes2d/misc.hpp>
 #include <shapes2d/shape_ptr.hpp>
+#include <shapes2d/export.h>
 
 
 namespace shapes2d {
@@ -22,7 +23,7 @@ using RegistryIdentifier = std::string;
  * @brief registry shape meta information.
  * Used for registry machinery, create new instance, etc
  */
-struct MetaInfo {
+struct SHAPES2D_MODEL_EXPORT MetaInfo {
     RegistryIdentifier id;
     FactoryPtr factory;
 };
@@ -31,7 +32,7 @@ struct MetaInfo {
 /**
  * @brief abstract shape factory
  */
-class Factory {
+class SHAPES2D_MODEL_EXPORT Factory {
 protected:
     virtual ShapePtr doCreate() = 0;
 public:

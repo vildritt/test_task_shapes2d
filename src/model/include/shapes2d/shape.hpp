@@ -8,6 +8,7 @@
 #include <shapes2d/misc.hpp>
 #include <shapes2d/color.hpp>
 #include <shapes2d/vector2d.hpp>
+#include <shapes2d/export.h>
 
 
 namespace shapes2d {
@@ -16,7 +17,7 @@ namespace shapes2d {
 /**
  * @brief Abstract 2d shape base class
  */
-class Shape {
+class SHAPES2D_MODEL_EXPORT Shape {
 private:
     bool m_visible = true;
     Point2D m_position;

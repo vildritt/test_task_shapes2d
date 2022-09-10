@@ -9,6 +9,7 @@
 
 #include <shapes2d/misc.hpp>
 #include <shapes2d/shape.hpp>
+#include <shapes2d/export.h>
 
 
 namespace shapes2d {
@@ -19,7 +20,7 @@ class RegistryPrivate;
 /**
  * @brief Registry of all available shapes
  */
-class Registry {
+class SHAPES2D_MODEL_EXPORT Registry {
 public:
     S2D_DISABLE_COPY_AND_ASSIGN(Registry);
     S2D_DISABLE_MOVE_AND_MOVE_ASSIGN(Registry);
