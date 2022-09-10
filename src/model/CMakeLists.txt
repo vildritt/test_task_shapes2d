@@ -12,6 +12,7 @@ set(SOURCES
     plotter.cpp
     vector2d.cpp
     color.cpp
+    scene_composer.cpp
     shape_meta_info.cpp
     shapes_registry.cpp
     shapes/triangle.cpp
@@ -24,8 +25,10 @@ set(HEADERS_PUBLIC
     include/shapes2d/misc.hpp
     include/shapes2d/color.hpp
     include/shapes2d/model.hpp
+    include/shapes2d/model_ptr.hpp
     include/shapes2d/plotter.hpp
     include/shapes2d/vector2d.hpp
+    include/shapes2d/scene_composer.hpp
     include/shapes2d/shape.hpp
     include/shapes2d/shape_meta_info.hpp
     include/shapes2d/shapes_registry.hpp

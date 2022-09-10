@@ -25,6 +25,7 @@ public:
     std::list<ShapePtr> m_shapes;
     std::unordered_map<shape::RegistryIdentifier, int> m_stats;
     std::vector<Model::OnStatUpdate> m_statUpdateHandlers;
+    SceneComposerPtr m_composer;
 
     void clear()
     {
@@ -91,11 +92,16 @@ void shapes2d::Model::addShape(const ShapePtr &shape)
 }
 
 
-void shapes2d::Model::showAllShapes()
+void shapes2d::Model::forEachShape(ShapeHandler handler)
 {
-    for(auto& shape : d_ptr->m_shapes) {
-        shape->setVisible(true);
+    for(const auto& shape : d_ptr->m_shapes) {
+        handler(shape);
     }
+}
+
+void shapes2d::Model::setAutoComposer(const SceneComposerPtr &composer)
+{
+    d_ptr->m_composer = composer;
 }
 
 
@@ -103,44 +109,8 @@ void shapes2d::Model::plotScene(const plotter::PlotterPtr &plotter)
 {
     assert(plotter && "plotter required");
 
-    // simple composer // TODO 1: extract as strategy composer
-    {
-        shapes2d::Palette palette = shapes2d::Palette::defaultPalette();
-
-        Point2D prevShapeCenter;
-        Point2D maxCoord;
-        int idx = 0;
-        for(const auto& shape : d_ptr->m_shapes) {
-            if (!shape->isVisible()) {
-                continue;
-            }
-            const auto br = shape->boundingRect();
-            const auto shapeHalfSize = br.size() / 2.0;
-
-            prevShapeCenter = prevShapeCenter + shapeHalfSize;
-            maxCoord = prevShapeCenter + shapeHalfSize;
-
-            shape->setPosition(prevShapeCenter);
-            shape->setFgColor(Colors::black);
-            shape->setBgColor(palette[idx++]);
-        }
-
-        // rev x coordinate
-        for(const auto& shape : d_ptr->m_shapes) {
-            if (!shape->isVisible()) {
-                continue;
-            }
-
-            auto pt = shape->position();
-            pt.x = maxCoord.x - pt.x;
-            shape->setPosition(pt);
-        }
-
-        const auto plotterSize = plotter->getSize();
-        const double xScale = plotterSize.x / maxCoord.x;
-        const double yScale = plotterSize.y / maxCoord.y;
-        const double scale = std::min(xScale, yScale);
-        plotter->setScale(scale);
+    if (d_ptr->m_composer) {
+        d_ptr->m_composer->compose(this, plotter);
     }
 
     for(const auto& shape : d_ptr->m_shapes) {

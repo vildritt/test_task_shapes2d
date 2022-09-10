@@ -97,7 +97,9 @@ void shapes2d::gui::MainWindow::createWidgets()
 
 void shapes2d::gui::MainWindow::makeAllShapesVisibleAndReplot() const
 {
-    m_model->showAllShapes();
+    m_model->forEachShape([](const shapes2d::ShapePtr& shape) {
+        shape->setVisible(true);
+    });
     m_ui.graph->update();
 }
 

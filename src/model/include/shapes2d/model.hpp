@@ -8,6 +8,7 @@
 
 #include <shapes2d/shape.hpp>
 #include <shapes2d/plotter_ptr.hpp>
+#include <shapes2d/scene_composer.hpp>
 
 
 namespace shapes2d {
@@ -52,13 +53,15 @@ public:
     }
 
     /**
-     * @brief make all shapes visible
+     * @brief enumerator
      */
-    void showAllShapes();
+    using ShapeHandler = std::function<void (const ShapePtr& shape)>;
+    void forEachShape(ShapeHandler handler);
 
 
-    /// scene plot
+    /// scene plot and compose
 
+    void setAutoComposer(const SceneComposerPtr& composer);
 
     /**
      * @brief plot scene with given plotter
