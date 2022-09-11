@@ -6,7 +6,7 @@
 #include <cmath>
 
 
-S2D_SHAPE_REGITRATOR_HELPER_DEFAULT(shapes2d::shapes::EquilateralTriangle)
+S2D_SHAPE_REGITRATOR_HELPER_DEFAULT(shapes2d::shapes::Triangle)
 
 
 namespace  {
@@ -17,7 +17,7 @@ const double kScaleY = std::sqrt(3.0) / 2.0;
 
 
 
-void shapes2d::shapes::EquilateralTriangle::doPlot(const PlotterPtr &plotter)
+void shapes2d::shapes::Triangle::doPlot(const PlotterPtr &plotter)
 {
     const auto dx = m_edgeSize / 2.0;
     const auto dy = m_edgeSize * kScaleY;
@@ -31,13 +31,13 @@ void shapes2d::shapes::EquilateralTriangle::doPlot(const PlotterPtr &plotter)
 }
 
 
-shapes2d::Rect2D shapes2d::shapes::EquilateralTriangle::doGetBoundingRect() const
+shapes2d::Rect2D shapes2d::shapes::Triangle::doGetBoundingRect() const
 {
     return Rect2D::fromCenterAndSizes(position(), Size2D{m_edgeSize, m_edgeSize * kScaleY});
 }
 
 
-shapes2d::shapes::EquilateralTriangle::EquilateralTriangle(double m_edgeSize)
+shapes2d::shapes::Triangle::Triangle(double m_edgeSize)
     : m_edgeSize(m_edgeSize)
 {
 }

@@ -143,7 +143,7 @@ QString shapes2d::gui::MainWindow::translateShapeName(const shape::Identifier &i
 
         REGISTER_SHAPE_TR(shapes2d::shapes::Circle, tr("Circle"));
         REGISTER_SHAPE_TR(shapes2d::shapes::Square, tr("Square"));
-        REGISTER_SHAPE_TR(shapes2d::shapes::EquilateralTriangle, tr("Triangle"));
+        REGISTER_SHAPE_TR(shapes2d::shapes::Triangle, tr("Triangle"));
     }
 
     const auto it = m_trShapesNames.find(id.c_str());

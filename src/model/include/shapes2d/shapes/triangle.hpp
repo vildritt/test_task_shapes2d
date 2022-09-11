@@ -11,14 +11,14 @@ namespace shapes2d {
 namespace shapes {
 
 
-class SHAPES2D_MODEL_EXPORT EquilateralTriangle : public shapes2d::Shape {
+class SHAPES2D_MODEL_EXPORT Triangle : public shapes2d::Shape {
     double m_edgeSize;
 protected:
     void doPlot(const PlotterPtr &plotter) override;
     const shape::MetaInfo* getMeta() const override;
     Rect2D doGetBoundingRect() const override;
 public:
-    EquilateralTriangle(double m_edgeSize = shapes2d::Shape::kDefaultSize);
+    Triangle(double m_edgeSize = shapes2d::Shape::kDefaultSize);
 };
 
 

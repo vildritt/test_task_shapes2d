@@ -34,7 +34,7 @@ shapes2d::gui::MainWindowController::MainWindowController(Model *model, QQmlAppl
 
 void shapes2d::gui::MainWindowController::btnTriangleClicked(QQuickItem *sender)
 {
-    m_model->addShape<shapes2d::shapes::EquilateralTriangle>();
+    m_model->addShape<shapes2d::shapes::Triangle>();
 }
 
 
@@ -87,5 +87,5 @@ int shapes2d::gui::MainWindowController::getStatSquares() const
 
 int shapes2d::gui::MainWindowController::getStatTriangles() const
 {
-    return m_model->shapesCount("shapes2d::shapes::EquilateralTriangle");
+    return m_model->shapesCount("shapes2d::shapes::Triangle");
 }
