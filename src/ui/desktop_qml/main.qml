@@ -57,14 +57,14 @@ Window {
                 horizontalAlignment:  Text.AlignHCenter
             }
             Button {
-                id: btnRectrangle
-                text: qsTr("Rectangle")
+                id: btnSquare
+                text: qsTr("Square")
                 Layout.fillWidth: true
-                onClicked: ctrl.btnRectangleClicked(btnRectrangle)
+                onClicked: ctrl.btnSquareClicked(btnSquare)
             }
             Label {
-                id: lblRectangles
-                text: "Count: " + ctrl.statRectangles
+                id: lblSquares
+                text: "Count: " + ctrl.statSquares
                 Layout.fillWidth: true
                 horizontalAlignment:  Text.AlignHCenter
             }

@@ -28,7 +28,7 @@ public slots:
 
     void btnTriangleClicked(QQuickItem* sender);
     void btnCircleClicked(QQuickItem* sender);
-    void btnRectangleClicked(QQuickItem* sender);
+    void btnSquareClicked(QQuickItem* sender);
     void btnPlotClicked(QQuickItem* sender);
     void btnClearClicked(QQuickItem* sender);
 
@@ -36,11 +36,11 @@ private:
     void makeAllShapesVisibleAndReplot() const;
 
     Q_PROPERTY(int statCircles READ getStatCircles NOTIFY statChanged)
-    Q_PROPERTY(int statRectangles READ getStatRectangles NOTIFY statChanged)
+    Q_PROPERTY(int statSquares READ getStatSquares NOTIFY statChanged)
     Q_PROPERTY(int statTriangles READ getStatTriangles NOTIFY statChanged)
 public:
     int getStatCircles() const;
-    int getStatRectangles() const;
+    int getStatSquares() const;
     int getStatTriangles() const;
 signals:
     void statChanged();

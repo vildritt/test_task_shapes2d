@@ -1,13 +1,13 @@
-#include <shapes2d/shapes/rectangle.hpp>
+#include <shapes2d/shapes/square.hpp>
 
 #include <shapes2d/plotter.hpp>
 #include "../shapes_registry.hpp"
 
 
-S2D_SHAPE_REGITRATOR_HELPER_DEFAULT(shapes2d::shapes::Rectangle)
+S2D_SHAPE_REGITRATOR_HELPER_DEFAULT(shapes2d::shapes::Square)
 
 
-void shapes2d::shapes::Rectangle::doPlot(const PlotterPtr &plotter)
+void shapes2d::shapes::Square::doPlot(const PlotterPtr &plotter)
 {
     shapes2d::PolygonBuilder polygon(4);
 
@@ -20,13 +20,13 @@ void shapes2d::shapes::Rectangle::doPlot(const PlotterPtr &plotter)
 }
 
 
-shapes2d::Rect2D shapes2d::shapes::Rectangle::doGetBoundingRect() const
+shapes2d::Rect2D shapes2d::shapes::Square::doGetBoundingRect() const
 {
     return Rect2D::fromCenterAndSizes(position(), Size2D{m_size, m_size});
 }
 
 
-shapes2d::shapes::Rectangle::Rectangle(double size)
+shapes2d::shapes::Square::Square(double size)
     : m_size(size)
 {
 }

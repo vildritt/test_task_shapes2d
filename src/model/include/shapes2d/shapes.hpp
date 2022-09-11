@@ -6,7 +6,7 @@
 
 #include <shapes2d/shapes/circle.hpp>
 #include <shapes2d/shapes/triangle.hpp>
-#include <shapes2d/shapes/rectangle.hpp>
+#include <shapes2d/shapes/square.hpp>
 
 
 #endif // SHAPES2D_SHAPES_H

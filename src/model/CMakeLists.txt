@@ -17,7 +17,7 @@ set(SOURCES
     shapes_registry.cpp
     shapes/triangle.cpp
     shapes/circle.cpp
-    shapes/rectangle.cpp
+    shapes/square.cpp
 )
 
 
@@ -35,7 +35,7 @@ set(HEADERS_PUBLIC
     include/shapes2d/shapes.hpp
     include/shapes2d/shapes/triangle.hpp
     include/shapes2d/shapes/circle.hpp
-    include/shapes2d/shapes/rectangle.hpp
+    include/shapes2d/shapes/square.hpp
 )
 
 

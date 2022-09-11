@@ -76,7 +76,7 @@ private slots:
         //TODO 1: bad - manual id strings formed
         QVERIFY(model.shapesCount("shapes2d::shapes::Circle") == 2);
         QVERIFY(model.shapesCount("shapes2d::shapes::EquilateralTriangle") == 1);
-        QVERIFY(model.shapesCount("shapes2d::shapes::rectangle") == 0);
+        QVERIFY(model.shapesCount("shapes2d::shapes::Square") == 0);
     }
 
     void plotSimpleScene()
@@ -88,7 +88,7 @@ private slots:
         model.addShape<shapes2d::shapes::Circle>();
         model.addShape<shapes2d::shapes::Circle>();
         model.addShape<shapes2d::shapes::EquilateralTriangle>();
-        model.addShape<shapes2d::shapes::Rectangle>();
+        model.addShape<shapes2d::shapes::Square>();
         model.plotScene(plotter);
 
         auto* testPlotter = dynamic_cast<TestPlotter*>(plotter.get());

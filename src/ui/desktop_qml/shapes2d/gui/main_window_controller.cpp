@@ -44,9 +44,9 @@ void shapes2d::gui::MainWindowController::btnCircleClicked(QQuickItem *sender)
 }
 
 
-void shapes2d::gui::MainWindowController::btnRectangleClicked(QQuickItem *sender)
+void shapes2d::gui::MainWindowController::btnSquareClicked(QQuickItem *sender)
 {
-    m_model->addShape<shapes2d::shapes::Rectangle>();
+    m_model->addShape<shapes2d::shapes::Square>();
 }
 
 
@@ -79,9 +79,9 @@ int shapes2d::gui::MainWindowController::getStatCircles() const
 }
 
 
-int shapes2d::gui::MainWindowController::getStatRectangles() const
+int shapes2d::gui::MainWindowController::getStatSquares() const
 {
-    return m_model->shapesCount("shapes2d::shapes::Rectangle");
+    return m_model->shapesCount("shapes2d::shapes::Square");
 }
 
 

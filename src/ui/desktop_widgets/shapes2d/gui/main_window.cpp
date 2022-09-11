@@ -142,7 +142,7 @@ QString shapes2d::gui::MainWindow::translateShapeName(const shape::Identifier &i
         };
 
         REGISTER_SHAPE_TR(shapes2d::shapes::Circle, tr("Circle"));
-        REGISTER_SHAPE_TR(shapes2d::shapes::Rectangle, tr("Rectrange"));
+        REGISTER_SHAPE_TR(shapes2d::shapes::Square, tr("Square"));
         REGISTER_SHAPE_TR(shapes2d::shapes::EquilateralTriangle, tr("Triangle"));
     }
 

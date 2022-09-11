@@ -3,7 +3,6 @@
         p - priority
         x = + done | - planned
 
-- [0] rename rectangle -> Square
 - [0] rm Equilateral prefix
 - [2] add translations
 - [2] feat: ui: try use QML
