@@ -1,6 +1,7 @@
 import QtQuick 2.0
-import QtQuick.Layouts
-import QtQuick.Controls
+import QtQuick.Layouts 1.2
+import QtQuick.Controls 2.4
+import QtQuick.Window 2.2
 import QuickPlotArea 1.0
 
 Window {
@@ -74,16 +75,16 @@ Window {
                 Layout.fillHeight: true
             }
             Button {
-                id: btnClear
-                text: qsTr("Clear")
-                Layout.fillWidth: true
-                onClicked: ctrl.btnClearClicked(btnClear)
-            }
-            Button {
                 id: btnPlot
                 text: qsTr("Plot")
                 Layout.fillWidth: true
                 onClicked: ctrl.btnPlotClicked(btnPlot)
+            }
+            Button {
+                id: btnClear
+                text: qsTr("Clear")
+                Layout.fillWidth: true
+                onClicked: ctrl.btnClearClicked(btnClear)
             }
         }
     }

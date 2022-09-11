@@ -13,7 +13,7 @@ namespace gui {
 
 class QuickPlotArea : public QQuickPaintedItem
 {
-    QML_ELEMENT
+    //QML_ELEMENT
 
 public:
     QuickPlotArea(QQuickItem *parent = nullptr);

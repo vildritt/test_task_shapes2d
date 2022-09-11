@@ -8,7 +8,7 @@
 
 namespace  {
 
-//TODO 1: move to sep. unit, publicate
+//TODO 2: move to sep. unit, publicate
 /**
  * simple composer - diagonal ordered /, full scaled
  */

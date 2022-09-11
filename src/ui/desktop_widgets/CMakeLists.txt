@@ -29,7 +29,7 @@ add_executable(shapes2d_gui_desktop_widgets
 
 
 # Qt
-find_package(Qt6 COMPONENTS Gui Widgets)
+find_package(Qt6 COMPONENTS Gui Widgets QUIET)
 if (Qt6_FOUND)
     set(QT_COMPONENTS Qt6::Gui Qt6::Widgets)
 else()

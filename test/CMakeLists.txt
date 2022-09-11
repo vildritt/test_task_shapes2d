@@ -8,7 +8,7 @@ project(shapes2d_tests
 
 
 # Qt
-find_package(Qt6 COMPONENTS Test)
+find_package(Qt6 COMPONENTS Test QUIET)
 if (Qt6_FOUND)
     set(QT_COMPONENTS Qt6::Test)
 else()

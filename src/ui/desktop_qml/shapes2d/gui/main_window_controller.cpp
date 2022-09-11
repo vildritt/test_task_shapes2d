@@ -12,8 +12,13 @@ shapes2d::gui::MainWindowController::MainWindowController(Model *model, QQmlAppl
     qmlEngine->rootContext()->setContextProperty("ctrl", this);
     qmlRegisterType<QuickPlotArea>("QuickPlotArea", 1, 0, "PlotArea");
 
+#if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
     const QUrl url(u"qrc:shapes2d/main.qml"_qs);
+#else
+    const QUrl url("qrc:shapes2d/main.qml");
+#endif
     qmlEngine->load(url);
+
 
     const auto uiEngineRoots = qmlEngine->rootObjects();
 

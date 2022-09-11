@@ -26,7 +26,7 @@ add_library(shapes2d_gui_qt_helper
 
 
 # Qt
-find_package(Qt6 COMPONENTS Gui)
+find_package(Qt6 COMPONENTS Gui QUIET)
 if (Qt6_FOUND)
     set(QT_COMPONENTS Qt6::Gui)
 else()

@@ -8,6 +8,7 @@ project(shapes2d_gui_desktop_qml
 
 
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
 
 set(SOURCES
@@ -22,14 +23,22 @@ set(HEADERS
 )
 
 
+# Qt
+find_package(Qt6 COMPONENTS Quick Gui QUIET)
+if (Qt6_FOUND)
+    set(QT_COMPONENTS Qt6::Gui Qt6::Quick)
+else()
+    find_package(Qt5 COMPONENTS Widgets Quick Qml REQUIRED)
+    set(QT_COMPONENTS Qt5::Widgets Qt5::Qml Qt5::Quick)
+    qt5_add_resources(SOURCES main.qrc)
+endif()
+
+
 add_executable(shapes2d_gui_desktop_qml
     ${SOURCES}
     ${HEADERS}
 )
 
-
-# Qt
-find_package(Qt6 COMPONENTS Quick Gui)
 if (Qt6_FOUND)
     qt_add_qml_module(shapes2d_gui_desktop_qml
         URI shapes2d
@@ -37,12 +46,7 @@ if (Qt6_FOUND)
         QML_FILES
             main.qml
     )
-    set(QT_COMPONENTS Qt6::Gui Qt6::Quick)
-else()
-    find_package(Qt5 COMPONENTS Widgets Quick Qml REQUIRED)
-    set(QT_COMPONENTS Qt5::Widgets Qt5::Qml Qt5::Quick)
 endif()
-
 
 target_link_libraries(shapes2d_gui_desktop_qml
     PRIVATE
