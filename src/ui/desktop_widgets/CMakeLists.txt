@@ -41,6 +41,7 @@ target_link_libraries(shapes2d_gui_desktop_widgets
     PRIVATE
         ${QT_COMPONENTS}
         shapes2d_model
+        shapes2d_gui_qt_helper
 )
 
 

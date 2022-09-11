@@ -7,12 +7,11 @@
 #include <shapes2d/model_ptr.hpp>
 #include <shapes2d/plotter.hpp>
 
+#include <shapes2d/gui/qt_helper/painter_plotter.hpp>
+
 
 namespace shapes2d {
 namespace gui {
-
-
-class WidgetPlotter;
 
 
 class PlotAreaWidget : public QWidget
@@ -28,10 +27,7 @@ protected:
     void paintEvent(QPaintEvent *event) override;
 
 private:
-    shapes2d::Model* m_model = nullptr;
-
-    shapes2d::PlotterPtr m_plotter;
-    shapes2d::gui::WidgetPlotter *m_widgetPlotter = nullptr;
+    shapes2d::gui::qt::PainterPlotterHelper m_plotter;
 };
 
 
