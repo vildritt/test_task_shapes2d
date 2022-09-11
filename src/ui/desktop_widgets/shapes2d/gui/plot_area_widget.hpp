@@ -2,17 +2,18 @@
 #define SHAPES2D_GUI_PLOT_AREA_WIDGET_H
 #pragma once
 
-
 #include <QWidget>
 
-#include <shapes2d/model.hpp>
+#include <shapes2d/model_ptr.hpp>
 #include <shapes2d/plotter.hpp>
 
 
 namespace shapes2d {
 namespace gui {
 
+
 class WidgetPlotter;
+
 
 class PlotAreaWidget : public QWidget
 {
@@ -29,7 +30,7 @@ protected:
 private:
     shapes2d::Model* m_model = nullptr;
 
-    shapes2d::plotter::PlotterPtr m_plotter;
+    shapes2d::PlotterPtr m_plotter;
     shapes2d::gui::WidgetPlotter *m_widgetPlotter = nullptr;
 };
 

@@ -16,10 +16,10 @@ namespace shapes2d {
 namespace shape {
 
 
-class RegistryPrivate;
 /**
  * @brief Registry of all available shapes
  */
+class RegistryPrivate;
 class SHAPES2D_MODEL_EXPORT Registry {
 public:
     S2D_DISABLE_COPY_AND_ASSIGN(Registry);

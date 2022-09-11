@@ -1,84 +1,88 @@
 #include <shapes2d/plotter.hpp>
 
 
-shapes2d::plotter::Plotter::Plotter()
+shapes2d::Plotter::Plotter()
 {
 }
 
 
-void shapes2d::plotter::Plotter::setFgColor(Color color)
+void shapes2d::Plotter::setForegroundColor(Color color)
 {
     m_state.fgColor = color;
-    doSetFgColor(color);
+    doSetForegroundColor(color);
 }
 
 
-void shapes2d::plotter::Plotter::setBgColor(Color color)
+void shapes2d::Plotter::setBackgroundColor(Color color)
 {
     m_state.bgColor = color;
-    doSetBgColor(color);
+    doSetBackgroundColor(color);
 }
 
 
-void shapes2d::plotter::Plotter::moveTo(const Point2D &pt)
+void shapes2d::Plotter::moveTo(const Point2D &pt)
 {
     doMoveTo(pt);
-    m_state.pt = pt;
+    m_state.point = pt;
 }
 
 
-void shapes2d::plotter::Plotter::lineTo(const Point2D &pt)
+void shapes2d::Plotter::lineTo(const Point2D &pt)
 {
     doLineTo(pt);
-    m_state.pt = pt;
+    m_state.point = pt;
 }
 
 
-void shapes2d::plotter::Plotter::circle(double radius)
+void shapes2d::Plotter::circle(double radius)
 {
     doCircle(radius);
 }
 
 
-void shapes2d::plotter::Plotter::polygon(const std::vector<shapes2d::Point2D>& points)
+void shapes2d::Plotter::polygon(const std::vector<shapes2d::Point2D>& points)
 {
     doPolygon(points);
 }
 
 
-shapes2d::Size2D shapes2d::plotter::Plotter::getSize() const
+shapes2d::Size2D shapes2d::Plotter::getCanvasSize() const
 {
-    return doGetSize();
+    return doGetCanvasSize();
 }
 
 
-void shapes2d::plotter::Plotter::relativeLineTo(const Point2D &pt)
-{
-    const auto& s = state();
-    lineTo(s.pt + pt);
-}
-
-
-const shapes2d::plotter::Plotter::State& shapes2d::plotter::Plotter::state() const
+const shapes2d::Plotter::State& shapes2d::Plotter::currState() const
 {
     return m_state;
 }
 
 
-shapes2d::plotter::Plotter::State &shapes2d::plotter::Plotter::state()
+shapes2d::Plotter::State &shapes2d::Plotter::currState()
 {
     return m_state;
 }
 
 
-void shapes2d::plotter::Plotter::setScale(double scale)
+void shapes2d::Plotter::setScale(double scale)
 {
     m_state.scale = scale;
 }
 
 
-shapes2d::Size2D shapes2d::plotter::Plotter::doGetSize() const
+shapes2d::Size2D shapes2d::Plotter::doGetCanvasSize() const
 {
     return {0.0, 0.0};
 }
 
+
+shapes2d::Point2D shapes2d::Plotter::State::xyOut(const Point2D &ptIn) const
+{
+    return ptIn * scale;
+}
+
+
+shapes2d::Point2D shapes2d::Plotter::State::ptOut() const
+{
+    return xyOut(point);
+}

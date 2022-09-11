@@ -14,7 +14,7 @@ namespace shapes {
 class SHAPES2D_MODEL_EXPORT Circle : public shapes2d::Shape {
     double m_radius;
 protected:
-    void doPlot(const plotter::PlotterPtr &plotter) override;
+    void doPlot(const PlotterPtr &plotter) override;
     const shape::MetaInfo* getMeta() const override;
     Rect2D doGetBoundingRect() const override;
 public:
@@ -23,8 +23,7 @@ public:
 };
 
 
-} // ns shapes
-} // ns shapes2d
+}} // ns shapes2d::shapes
 
 
 #endif // SHAPES2D_SHAPES_CIRCLE_H

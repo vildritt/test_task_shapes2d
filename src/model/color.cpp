@@ -1,14 +1,15 @@
 #include <shapes2d/color.hpp>
 
-const shapes2d::Color shapes2d::Colors::white = 0xFFFFFFFF;
-const shapes2d::Color shapes2d::Colors::black = 0x00000000;
+
+const shapes2d::Color shapes2d::Color::white = 0xFFFFFFFF;
+const shapes2d::Color shapes2d::Color::black = 0x00000000;
 
 
 shapes2d::Color shapes2d::Palette::operator[](int index) const
 {
     const auto N = colors.size();
     if (N == 0) {
-        return Colors::white;
+        return Color::white;
     }
 
     if (index < 0) {
@@ -34,4 +35,16 @@ shapes2d::Palette shapes2d::Palette::paletteWarm()
     res.colors.push_back(0xFFC75F);
     res.colors.push_back(0xF9F871);
     return res;
+}
+
+
+shapes2d::Color::Color(ARGBEncoded argb)
+    : argb(argb)
+{
+}
+
+
+shapes2d::Color::operator uint32_t() const
+{
+    return argb;
 }

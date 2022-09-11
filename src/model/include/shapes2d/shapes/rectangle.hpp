@@ -14,7 +14,7 @@ namespace shapes {
 class SHAPES2D_MODEL_EXPORT Rectangle : public shapes2d::Shape {
     double m_size;
 protected:
-    void doPlot(const plotter::PlotterPtr &plotter) override;
+    void doPlot(const PlotterPtr &plotter) override;
     const shape::MetaInfo* getMeta() const override;
     Rect2D doGetBoundingRect() const override;
 public:

@@ -14,7 +14,7 @@ namespace shapes {
 class SHAPES2D_MODEL_EXPORT EquilateralTriangle : public shapes2d::Shape {
     double m_edgeSize;
 protected:
-    void doPlot(const plotter::PlotterPtr &plotter) override;
+    void doPlot(const PlotterPtr &plotter) override;
     const shape::MetaInfo* getMeta() const override;
     Rect2D doGetBoundingRect() const override;
 public:

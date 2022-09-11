@@ -9,14 +9,14 @@ namespace shape {
 class RegistryPrivate {
 public:
     Registry* q_ptr = nullptr;
-    std::unordered_map<RegistryIdentifier, const MetaInfo*> m_registry;
+    std::unordered_map<Identifier, const MetaInfo*> m_registry;
     std::vector<const MetaInfo*> m_registryOrdered;
 
     RegistryPrivate(Registry* q_ptr)
         : q_ptr(q_ptr)
     {}
 
-    bool exists(const RegistryIdentifier& id) const
+    bool exists(const Identifier& id) const
     {
         return m_registry.find(id) != m_registry.end();
     }

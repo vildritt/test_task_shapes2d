@@ -8,16 +8,19 @@
 
 namespace  {
 
+//TODO 1: move to sep. unit, publicate
 /**
- * simple composer - diagonal ordered
+ * simple composer - diagonal ordered /, full scaled
  */
 class SimpleComposer : public shapes2d::SceneComposer
 {
 protected:
-    void doCompose(shapes2d::Model* model, const shapes2d::plotter::PlotterPtr& plotter) override
+    void doCompose(shapes2d::Model* model, const shapes2d::PlotterPtr& plotter) override
     {
+        // default colorer
         shapes2d::Palette palette = shapes2d::Palette::defaultPalette();
 
+        // fix x,y coordinates, build diagonal
         shapes2d::Point2D prevShapeCenter;
         shapes2d::Point2D maxCoord;
         int idx = 0;
@@ -32,11 +35,11 @@ protected:
             maxCoord = prevShapeCenter + shapeHalfSize;
 
             shape->setPosition(prevShapeCenter);
-            shape->setFgColor(shapes2d::Colors::black);
-            shape->setBgColor(palette[idx++]);
+            shape->setForegroundColor(shapes2d::Color::black);
+            shape->setBackgroundColor(palette[idx++]);
         });
 
-        // rev x coordinate
+        // mirror x coordinate to get \ -> /
         model->forEachShape([&prevShapeCenter, &maxCoord, &palette, &idx](const shapes2d::ShapePtr& shape) {
             if (!shape->isVisible()) {
                 return;
@@ -47,11 +50,14 @@ protected:
             shape->setPosition(pt);
         });
 
-        const auto plotterSize = plotter->getSize();
-        const double xScale = plotterSize.x / maxCoord.x;
-        const double yScale = plotterSize.y / maxCoord.y;
-        const double scale = std::min(xScale, yScale);
-        plotter->setScale(scale);
+        // set full scale
+        {
+            const auto plotterSize = plotter->getCanvasSize();
+            const double xScale = plotterSize.x / maxCoord.x;
+            const double yScale = plotterSize.y / maxCoord.y;
+            const double scale = std::min(xScale, yScale);
+            plotter->setScale(scale);
+        }
     }
 };
 
@@ -59,7 +65,7 @@ protected:
 } // ns a
 
 
-void shapes2d::SceneComposer::compose(Model* model, const plotter::PlotterPtr &plotter)
+void shapes2d::SceneComposer::compose(Model* model, const PlotterPtr &plotter)
 {
     doCompose(model, plotter);
 }

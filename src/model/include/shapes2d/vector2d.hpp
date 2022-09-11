@@ -9,6 +9,9 @@
 namespace shapes2d {
 
 
+/**
+ * @brief simple 2d point with (x,y) coordinates
+ */
 struct SHAPES2D_MODEL_EXPORT Point2D {
     double x = 0.0;
     double y = 0.0;
@@ -27,6 +30,7 @@ struct SHAPES2D_MODEL_EXPORT Point2D {
 
 
 using Size2D = Point2D;
+using Vector2D = Point2D;
 
 
 struct SHAPES2D_MODEL_EXPORT Rect2D {
@@ -57,6 +61,16 @@ Point2D SHAPES2D_MODEL_EXPORT operator-(const Point2D& a, const Point2D& b);
 Point2D SHAPES2D_MODEL_EXPORT operator+(const Point2D& a, const Point2D& b);
 Point2D SHAPES2D_MODEL_EXPORT operator/(const Point2D& a, double b);
 Point2D SHAPES2D_MODEL_EXPORT operator*(const Point2D& a, double b);
+
+
+struct PolygonBuilder {
+    PolygonBuilder(size_t pointCountEst = 0);
+
+    std::vector<shapes2d::Point2D> points;
+
+    void addAbs(const Point2D& pt);
+    void addRel(const Vector2D& v);
+};
 
 
 } // ns shapes2d

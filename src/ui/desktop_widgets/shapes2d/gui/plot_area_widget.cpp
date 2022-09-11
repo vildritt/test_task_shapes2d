@@ -2,75 +2,98 @@
 
 #include <QPainter>
 
+#include <shapes2d/model.hpp>
+
 
 namespace shapes2d {
 namespace gui {
 
-class WidgetPlotter : public shapes2d::plotter::Plotter {
+
+class WidgetPlotter : public shapes2d::Plotter {
 public:
-    QPainter* painter = nullptr;
+    void setPainter(QPainter* painter)
+    {
+        m_painter = painter;
+    }
 protected:
 
-    void doSetFgColor(shapes2d::Color color) override
+    void doSetForegroundColor(shapes2d::Color color) override
     {
-        m_pen.setColor(color);
-        painter->setPen(m_pen);
+        m_pen.setColor(color.argb);
+        m_painter->setPen(m_pen);
     }
 
-    void doSetBgColor(shapes2d::Color color) override
+    void doSetBackgroundColor(shapes2d::Color color) override
     {
-        m_brush.setColor(color);
+        m_brush.setColor(color.argb);
         m_brush.setStyle(Qt::BrushStyle::SolidPattern);
-        painter->setBrush(m_brush);
-        painter->setBackgroundMode(Qt::BGMode::OpaqueMode);
+        m_painter->setBrush(m_brush);
+        m_painter->setBackgroundMode(Qt::BGMode::OpaqueMode);
     }
 
     void doLineTo(const shapes2d::Point2D& pt) override
     {
-        const auto& st = state();
-        const double s = st.scale;
-        const auto pt1 = st.pt * s;
-        const auto pt2 = pt * s;
-        painter->drawLine(pt1.x, pt1.y, pt2.x, pt2.y);
+        const auto& st = currState();
+        const auto pt1 = st.ptOut();
+        const auto pt2 = st.xyOut(pt);
+        m_painter->drawLine(pt1.x, pt1.y, pt2.x, pt2.y);
     }
 
     void doCircle(double radius) override
     {
-        const auto& st = state();
-        const double s = st.scale;
-        const auto rad = Size2D{radius, radius};
-        const auto lt = (st.pt - rad) * s;
-        const double diameter = radius * 2.0 * s;
-        const auto rect = QRectF(lt.x, lt.y, diameter, diameter);
-        painter->drawEllipse(rect);
+        const auto& st = currState();
+
+        const double d = radius * 2.0 * st.scale;
+        const auto lt = st.xyOut(st.point - Size2D{radius, radius});
+
+        const auto rect = QRectF(lt.x, lt.y, d, d);
+
+        m_painter->drawEllipse(rect);
     }
 
     void doPolygon(const std::vector<shapes2d::Point2D>& points) override
     {
-        const auto& st = state();
-        const double s = st.scale;
+        const auto& st = currState();
 
         QPolygon polgon;
         polgon.reserve(points.size());
         for(const auto& pt : points) {
-            const auto pts = pt * s;
+            const auto pts = st.xyOut(pt);
             polgon.push_back(QPoint(pts.x, pts.y));
         }
 
-        painter->drawPolygon(polgon);
+        m_painter->drawPolygon(polgon);
     }
 
-    Size2D doGetSize() const override
+    Size2D doGetCanvasSize() const override
     {
-        const auto sz = painter->window();
-        return Size2D(sz.width(), sz.height());
+        const auto csz = m_painter->window();
+        return Size2D(csz.width(), csz.height());
     }
 
 private:
 
     QPen m_pen;
     QBrush m_brush;
+    QPainter* m_painter = nullptr;
+};
 
+
+struct WidgetPlotterSetPainterGuard {
+    WidgetPlotter *plotter = nullptr;
+
+    WidgetPlotterSetPainterGuard(WidgetPlotter *plotter, QPainter* patiner)
+        : plotter(plotter)
+    {
+        plotter->setPainter(patiner);
+    }
+
+    ~WidgetPlotterSetPainterGuard() {
+        try {
+            plotter->setPainter(nullptr);
+        } catch (...) {
+        }
+    }
 };
 
 
@@ -92,6 +115,7 @@ void shapes2d::gui::PlotAreaWidget::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
-    m_widgetPlotter->painter = &painter;
+
+    WidgetPlotterSetPainterGuard guard(m_widgetPlotter, &painter);
     m_model->plotScene(m_plotter);
 }

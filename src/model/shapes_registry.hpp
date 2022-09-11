@@ -32,7 +32,7 @@ FactoryPtr createDefaultFactory()
 
 template<typename T>
 struct ShapeRegistratorHelper {
-    ShapeRegistratorHelper(const shapes2d::shape::RegistryIdentifier& id, shapes2d::shape::MetaInfo* meta) {
+    ShapeRegistratorHelper(const shapes2d::shape::Identifier& id, shapes2d::shape::MetaInfo* meta) {
         meta->id = id;
         meta->factory = shapes2d::shape::createDefaultFactory<T>();
         shapes2d::shape::Registry::instance().registerShape(meta);
@@ -41,7 +41,8 @@ struct ShapeRegistratorHelper {
 
 
 /**
- * Use this macro for new shapes to register
+ * Use this two macros for new shapes to register
+ * TODO 0: this works only if shared lib used, for static - need to manually register all shapes!
  */
 #define S2D_SHAPE_REGITRATOR_HELPER(ClassName, Id)                    \
 namespace {                                                           \
@@ -53,10 +54,15 @@ const struct Registrator : public Helper {                            \
     Registrator() : Helper(Id, &metaInfo) {}                          \
 } registrator;                                                        \
                                                                       \
-} // ns a
+} /* ns a*/                                                           \
+                                                                      \
+const shapes2d::shape::MetaInfo *ClassName::getMeta() const           \
+{                                                                     \
+    return &::metaInfo;                                               \
+}
 
 
-// or this one
+
 #define S2D_SHAPE_REGITRATOR_HELPER_DEFAULT(ClassName)  \
     S2D_SHAPE_REGITRATOR_HELPER(ClassName, #ClassName)
 

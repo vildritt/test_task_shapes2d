@@ -39,35 +39,43 @@ shapes2d::Size2D shapes2d::Rect2D::size() const
 
 shapes2d::Point2D shapes2d::operator+(const Point2D &a, const Point2D &b)
 {
-    shapes2d::Point2D res;
-    res.x = a.x + b.x;
-    res.y = a.y + b.y;
-    return res;
+    return {a.x + b.x, a.y + b.y};
 }
 
 
 shapes2d::Point2D shapes2d::operator-(const Point2D &a, const Point2D &b)
 {
-    shapes2d::Point2D res;
-    res.x = a.x - b.x;
-    res.y = a.y - b.y;
-    return res;
+    return {a.x - b.x, a.y - b.y};
 }
 
 
 shapes2d::Point2D shapes2d::operator/(const Point2D &a, double b)
 {
-    shapes2d::Point2D res;
-    res.x = a.x / b;
-    res.y = a.y / b;
-    return res;
+    return {a.x / b, a.y / b};
 }
 
 
 shapes2d::Point2D shapes2d::operator*(const Point2D &a, double b)
 {
-    shapes2d::Point2D res;
-    res.x = a.x * b;
-    res.y = a.y * b;
-    return res;
+    return {a.x * b, a.y * b};
+}
+
+
+shapes2d::PolygonBuilder::PolygonBuilder(size_t pointCountEst)
+{
+    if (pointCountEst > 0) {
+        points.reserve(pointCountEst);
+    }
+}
+
+
+void shapes2d::PolygonBuilder::addAbs(const Point2D &pt)
+{
+    points.push_back(pt);
+}
+
+
+void shapes2d::PolygonBuilder::addRel(const Vector2D &v)
+{
+    points.push_back(points.back() + v);
 }

@@ -3,10 +3,10 @@
 #include <shapes2d/plotter.hpp>
 
 
-void shapes2d::Shape::plot(const plotter::PlotterPtr &plotter)
+void shapes2d::Shape::plot(const PlotterPtr &plotter)
 {
-    plotter->setFgColor(m_fgColor);
-    plotter->setBgColor(m_bgColor);
+    plotter->setForegroundColor(m_foregroundColor);
+    plotter->setBackgroundColor(m_backgroundColor);
     doPlot(plotter);
 }
 
@@ -41,27 +41,27 @@ const shapes2d::Point2D &shapes2d::Shape::position() const
 }
 
 
-shapes2d::Color shapes2d::Shape::fgColor() const
+shapes2d::Color shapes2d::Shape::foregroundColor() const
 {
-    return m_fgColor;
+    return m_foregroundColor;
 }
 
 
-shapes2d::Color shapes2d::Shape::bgColor() const
+shapes2d::Color shapes2d::Shape::backgroundColor() const
 {
-    return m_bgColor;
+    return m_backgroundColor;
 }
 
 
-void shapes2d::Shape::setFgColor(Color color)
+void shapes2d::Shape::setForegroundColor(Color color)
 {
-    m_fgColor = color;
+    m_foregroundColor = color;
 }
 
 
-void shapes2d::Shape::setBgColor(Color color)
+void shapes2d::Shape::setBackgroundColor(Color color)
 {
-    m_bgColor = color;
+    m_backgroundColor = color;
 }
 
 

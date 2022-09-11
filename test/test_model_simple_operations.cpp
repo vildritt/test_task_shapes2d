@@ -6,7 +6,7 @@
 #include <shapes2d/shapes_registry.hpp>
 
 
-class TestPlotter : public shapes2d::plotter::Plotter {
+class TestPlotter : public shapes2d::Plotter {
 public:
     int nCircles = 0;
     int nPolygones = 0;
@@ -14,12 +14,12 @@ public:
     int nMoves = 0;
     int nColorChanges = 0;
 protected:
-    void doSetFgColor(shapes2d::Color color) override
+    void doSetForegroundColor(shapes2d::Color color) override
     {
         ++nColorChanges;
     }
 
-    void doSetBgColor(shapes2d::Color color) override
+    void doSetBackgroundColor(shapes2d::Color color) override
     {
         ++nColorChanges;
     }
@@ -81,7 +81,7 @@ private slots:
 
     void plotSimpleScene()
     {
-        shapes2d::plotter::PlotterPtr plotter = std::make_shared<TestPlotter>();
+        shapes2d::PlotterPtr plotter = std::make_shared<TestPlotter>();
         shapes2d::Model model;
 
         model.clearScene();

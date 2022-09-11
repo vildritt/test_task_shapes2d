@@ -9,9 +9,10 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     shapes2d::Model model;
-    model.setAutoComposer(shapes2d::SceneComposer::defaultComposer());
+    model.setSceneAutoComposer(shapes2d::SceneComposer::defaultComposer());
+
     shapes2d::gui::MainWindow window(&model);
-    window.resize(800, 600);
+    window.resize(800, 600); // TODO 1: use half screen size
     window.show();
 
     return QApplication::exec();

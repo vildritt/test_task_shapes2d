@@ -17,14 +17,14 @@ namespace shape {
 
 class Factory;
 using FactoryPtr = std::shared_ptr<Factory>;
-using RegistryIdentifier = std::string;
+using Identifier = std::string;
 
 /**
  * @brief registry shape meta information.
  * Used for registry machinery, create new instance, etc
  */
 struct SHAPES2D_MODEL_EXPORT MetaInfo {
-    RegistryIdentifier id;
+    Identifier id;
     FactoryPtr factory;
 };
 

@@ -14,13 +14,16 @@ class SceneComposer;
 using SceneComposerPtr = std::shared_ptr<SceneComposer>;
 
 
+/**
+ * @brief Abstract composer. Base class for impl. any automatic composition strategies of scene objects
+ */
 class SHAPES2D_MODEL_EXPORT SceneComposer {
 protected:
-    virtual void doCompose(Model* model, const plotter::PlotterPtr& plotter) = 0;
+    virtual void doCompose(Model* model, const PlotterPtr& plotter) = 0;
 public:
     virtual ~SceneComposer() {}
 
-    void compose(Model* model, const plotter::PlotterPtr& plotter);
+    void compose(Model* model, const PlotterPtr& plotter);
 
     //
 

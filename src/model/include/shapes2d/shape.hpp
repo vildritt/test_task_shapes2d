@@ -21,10 +21,10 @@ class SHAPES2D_MODEL_EXPORT Shape {
 private:
     bool m_visible = true;
     Point2D m_position;
-    Color m_fgColor = Colors::black;
-    Color m_bgColor = Colors::white;
+    Color m_foregroundColor = Color::black;
+    Color m_backgroundColor = Color::white;
 protected:
-    virtual void doPlot(const plotter::PlotterPtr &plotter) = 0;
+    virtual void doPlot(const PlotterPtr &plotter) = 0;
     virtual const shape::MetaInfo* getMeta() const = 0;
     virtual Rect2D doGetBoundingRect() const = 0;
 public:
@@ -41,7 +41,7 @@ public:
     /**
      * @brief plot request with given plotter
      */
-    void plot(const plotter::PlotterPtr &plotter);
+    void plot(const PlotterPtr &plotter);
 
     /**
      * @brief minimal rect that fully contains shape
@@ -52,14 +52,15 @@ public:
     bool isVisible() const;
     void setVisible(bool visible);
 
+    /// center point of shape
     void setPosition(const Point2D& position);
     const Point2D& position() const;
 
-    Color fgColor() const;
-    Color bgColor() const;
-
-    void setFgColor(Color color);
-    void setBgColor(Color color);
+    /// fg/bg color of shape setter/getter
+    Color foregroundColor() const;
+    void setForegroundColor(Color color);
+    Color backgroundColor() const;
+    void setBackgroundColor(Color color);
 
     /// consts
 

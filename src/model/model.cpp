@@ -1,10 +1,10 @@
 #include <shapes2d/model.hpp>
+
 #include <shapes2d/plotter.hpp>
 
 #include <vector>
 #include <list>
 #include <unordered_map>
-
 #include <cassert>
 
 
@@ -21,7 +21,7 @@ public:
 
     // z ordered shapes
     std::list<ShapePtr> m_shapes;
-    std::unordered_map<shape::RegistryIdentifier, int> m_stats;
+    std::unordered_map<shape::Identifier, int> m_stats;
     std::vector<Model::OnStatUpdate> m_statUpdateHandlers;
     SceneComposerPtr m_composer;
 
@@ -29,16 +29,19 @@ public:
     {
         m_shapes.clear();
 
-        std::vector<shape::RegistryIdentifier> ids;
-        ids.reserve(m_stats.size());
-        for(const auto& stat : m_stats) {
-            ids.push_back(stat.first);
-        }
+        // update stats
+        {
+            std::vector<shape::Identifier> ids;
+            ids.reserve(m_stats.size());
+            for(const auto& stat : m_stats) {
+                ids.push_back(stat.first);
+            }
 
-        m_stats.clear();
+            m_stats.clear();
 
-        for(const auto& id : ids) {
-            notifyStatUpdate(id);
+            for(const auto& id : ids) {
+                notifyStatUpdate(id);
+            }
         }
     }
 
@@ -46,7 +49,7 @@ public:
     {
         m_shapes.push_back(shape);
 
-        // stat
+        // update stat
         {
             const auto id = shape->meta()->id;
             m_stats[id]++;
@@ -54,7 +57,7 @@ public:
         }
     }
 
-    void notifyStatUpdate(const shape::RegistryIdentifier& id)
+    void notifyStatUpdate(const shape::Identifier& id)
     {
         for(const auto& handler : m_statUpdateHandlers) {
             handler(id, q_ptr->shapesCount(id));
@@ -90,20 +93,21 @@ void shapes2d::Model::addShape(const ShapePtr &shape)
 }
 
 
-void shapes2d::Model::forEachShape(ShapeHandler handler)
+void shapes2d::Model::forEachShape(const ShapeHandler& handler)
 {
     for(const auto& shape : d_ptr->m_shapes) {
         handler(shape);
     }
 }
 
-void shapes2d::Model::setAutoComposer(const SceneComposerPtr &composer)
+
+void shapes2d::Model::setSceneAutoComposer(const SceneComposerPtr &composer)
 {
     d_ptr->m_composer = composer;
 }
 
 
-void shapes2d::Model::plotScene(const plotter::PlotterPtr &plotter)
+void shapes2d::Model::plotScene(const PlotterPtr &plotter)
 {
     assert(plotter && "plotter required");
 
@@ -119,7 +123,7 @@ void shapes2d::Model::plotScene(const plotter::PlotterPtr &plotter)
 }
 
 
-int shapes2d::Model::shapesCount(const shape::RegistryIdentifier &id) const
+int shapes2d::Model::shapesCount(const shape::Identifier &id) const
 {
     const auto it = d_ptr->m_stats.find(id);
     if (it == d_ptr->m_stats.end()) {

@@ -2,15 +2,8 @@
 #define SHAPES2D_GUI_MAIN_WINDOWS_H
 #pragma once
 
-
 #include <QMainWindow>
-#include <QWindow>
-#include <QPushButton>
 #include <QLabel>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QGraphicsScene>
-#include <QSpacerItem>
 #include <QString>
 #include <QHash>
 
@@ -21,6 +14,7 @@
 
 namespace shapes2d {
 namespace gui {
+
 
 class MainWindow : public QMainWindow
 {
@@ -35,16 +29,7 @@ private:
     shapes2d::Model* m_model = nullptr;
 
     struct Ui {
-        QHBoxLayout* loMain = nullptr;
-        QVBoxLayout* loButtons = nullptr;
-
         QWidget* graph = nullptr;
-
-        QWidget* wgtButtons = nullptr;
-
-        QPushButton* btnPlot = nullptr;
-        QPushButton* btnClear = nullptr;
-
         QHash<QString, QLabel*> lblStats;
     } m_ui;
     QHash<QString, QString> m_trShapesNames;
@@ -53,7 +38,8 @@ private:
 
     void createWidgets();
     void makeAllShapesVisibleAndReplot() const;
-    QString translateShapeName(const shape::RegistryIdentifier &id);
+    QString translateShapeName(const shape::Identifier &id);
+    void uiUpdateStat(const shape::Identifier &id, int count);
 };
 
 

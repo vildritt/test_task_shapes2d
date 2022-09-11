@@ -6,14 +6,12 @@
 
 
 namespace shapes2d {
-namespace plotter {
 
 class Plotter;
 
 using PlotterPtr = std::shared_ptr<Plotter>;
 
 
-} // plotter
 } // shapes2d
 
 

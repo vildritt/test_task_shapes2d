@@ -7,31 +7,16 @@
 S2D_SHAPE_REGITRATOR_HELPER_DEFAULT(shapes2d::shapes::Rectangle)
 
 
-void shapes2d::shapes::Rectangle::doPlot(const plotter::PlotterPtr &plotter)
+void shapes2d::shapes::Rectangle::doPlot(const PlotterPtr &plotter)
 {
-    const double halfSize = m_size / 2.0;
+    shapes2d::PolygonBuilder polygon(4);
 
-    std::vector<shapes2d::Point2D> pts;
-    pts.reserve(4);
+    polygon.addAbs(position() - (Size2D{m_size, m_size} / 2.0));
+    polygon.addRel({m_size, 0.0});
+    polygon.addRel({0.0, m_size});
+    polygon.addRel({-m_size, 0.0});
 
-    shapes2d::Point2D pt = position() - Size2D{halfSize, halfSize};
-    pts.push_back(pt);
-    pt = pt + Point2D{m_size, 0.0};
-    pts.push_back(pt);
-    pt = pt + Point2D{0.0, m_size};
-    pts.push_back(pt);
-    pt = pt + Point2D{-m_size, 0.0};
-    pts.push_back(pt);
-    pt = pt + Point2D{0.0, -m_size};
-    pts.push_back(pt);
-
-    plotter->polygon(pts);
-}
-
-
-const shapes2d::shape::MetaInfo *shapes2d::shapes::Rectangle::getMeta() const
-{
-    return &::metaInfo;
+    plotter->polygon(polygon.points);
 }
 
 
@@ -45,5 +30,3 @@ shapes2d::shapes::Rectangle::Rectangle(double size)
     : m_size(size)
 {
 }
-
-
