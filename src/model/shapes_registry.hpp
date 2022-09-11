@@ -35,6 +35,7 @@ struct ShapeRegistratorHelper {
     ShapeRegistratorHelper(const shapes2d::shape::Identifier& id, shapes2d::shape::MetaInfo* meta) {
         meta->id = id;
         meta->factory = shapes2d::shape::createDefaultFactory<T>();
+        meta->typeIndex = shapes2d::typeIndex<T>();
         shapes2d::shape::Registry::instance().registerShape(meta);
     }
 };

@@ -10,6 +10,7 @@ class RegistryPrivate {
 public:
     Registry* q_ptr = nullptr;
     std::unordered_map<Identifier, const MetaInfo*> m_registry;
+    std::unordered_map<std::type_index, Identifier> m_typeIndex2Identifier;
     std::vector<const MetaInfo*> m_registryOrdered;
 
     RegistryPrivate(Registry* q_ptr)
@@ -21,14 +22,15 @@ public:
         return m_registry.find(id) != m_registry.end();
     }
 
-    void registerShape(const MetaInfo *descriptor)
+    void registerShape(const MetaInfo *meta)
     {
-        const auto& id = descriptor->id;
+        const auto& id = meta->id;
         if (exists(id)) {
             throw std::logic_error("shape with this id already registered:" + id);
         }
-        m_registry[id] = descriptor;
-        m_registryOrdered.push_back(descriptor);
+        m_registry[id] = meta;
+        m_registryOrdered.push_back(meta);
+        m_typeIndex2Identifier[meta->typeIndex] = meta->id;
     }
 
 };
@@ -53,6 +55,16 @@ void shapes2d::shape::Registry::registerShape(const MetaInfo *descriptor)
 const std::vector<const shapes2d::shape::MetaInfo*>& shapes2d::shape::Registry::allRegisteredShapes() const
 {
     return d_ptr->m_registryOrdered;
+}
+
+
+shapes2d::shape::Identifier shapes2d::shape::Registry::typeIdentifier(const std::type_index &typeIndex) const
+{
+    const auto it = d_ptr->m_typeIndex2Identifier.find(typeIndex);
+    if (it == d_ptr->m_typeIndex2Identifier.end()) {
+        return "";
+    }
+    return it->second;
 }
 
 

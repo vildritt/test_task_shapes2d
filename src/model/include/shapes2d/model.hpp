@@ -78,6 +78,13 @@ public:
      * @brief get count of shape of a given type id
      */
     int shapesCount(const shape::Identifier& id) const;
+    int shapesCount(const std::type_index& typeIndex) const;
+
+    template<typename T>
+    int shapesCount() const
+    {
+        return shapesCount(shapes2d::typeIndex<T>());
+    }
 
     /**
      * @brief stats observation
@@ -86,7 +93,6 @@ public:
     using OnStatUpdate = std::function<void (const shape::Identifier& id, int count)>;
     void registerStatUpdateHandler(OnStatUpdate handler);
 
-    // TODO 1: impl also get count from static type (use typeinfo)
 
 private:
 

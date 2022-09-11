@@ -73,10 +73,9 @@ private slots:
         model.addShape<shapes2d::shapes::Circle>();
         model.addShape<shapes2d::shapes::Triangle>();
 
-        //TODO 1: bad - manual id strings formed
-        QVERIFY(model.shapesCount("shapes2d::shapes::Circle") == 2);
-        QVERIFY(model.shapesCount("shapes2d::shapes::Triangle") == 1);
-        QVERIFY(model.shapesCount("shapes2d::shapes::Square") == 0);
+        QVERIFY(model.shapesCount<shapes2d::shapes::Circle>() == 2);
+        QVERIFY(model.shapesCount<shapes2d::shapes::Triangle>() == 1);
+        QVERIFY(model.shapesCount<shapes2d::shapes::Square>() == 0);
     }
 
     void plotSimpleScene()

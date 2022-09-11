@@ -40,6 +40,13 @@ public:
      */
     const std::vector<const MetaInfo*>& allRegisteredShapes() const;
 
+
+    template<typename T>
+    Identifier typeIdentifier() const {
+        return typeIdentifier(shapes2d::typeIndex<T>());
+    }
+    Identifier typeIdentifier(const std::type_index& typeIndex) const;
+
 private:
     Registry();
     ~Registry();

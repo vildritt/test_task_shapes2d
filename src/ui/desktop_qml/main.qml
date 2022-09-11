@@ -8,6 +8,7 @@ Window {
     visible: true
 
     width: 800; height: 640
+    title: qsTr("Shapes2D")
 
     Component.onCompleted: {
         x = (Screen.width - width) / 2

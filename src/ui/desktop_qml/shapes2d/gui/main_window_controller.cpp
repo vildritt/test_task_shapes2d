@@ -74,18 +74,17 @@ void shapes2d::gui::MainWindowController::makeAllShapesVisibleAndReplot() const
 
 int shapes2d::gui::MainWindowController::getStatCircles() const
 {
-    //TODO 0: bad - hardcoded ids
-    return m_model->shapesCount("shapes2d::shapes::Circle");
+    return m_model->shapesCount<shapes2d::shapes::Circle>();
 }
 
 
 int shapes2d::gui::MainWindowController::getStatSquares() const
 {
-    return m_model->shapesCount("shapes2d::shapes::Square");
+    return m_model->shapesCount<shapes2d::shapes::Square>();
 }
 
 
 int shapes2d::gui::MainWindowController::getStatTriangles() const
 {
-    return m_model->shapesCount("shapes2d::shapes::Triangle");
+    return m_model->shapesCount<shapes2d::shapes::Triangle>();
 }

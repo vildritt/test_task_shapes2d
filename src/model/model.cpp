@@ -1,6 +1,7 @@
 #include <shapes2d/model.hpp>
 
 #include <shapes2d/plotter.hpp>
+#include <shapes2d/shapes_registry.hpp>
 
 #include <vector>
 #include <list>
@@ -130,6 +131,14 @@ int shapes2d::Model::shapesCount(const shape::Identifier &id) const
         return 0;
     }
     return it->second;
+}
+
+
+int shapes2d::Model::shapesCount(const std::type_index &typeIndex) const
+{
+    auto& rs = shapes2d::shape::Registry::instance();
+    const auto id = rs.typeIdentifier(typeIndex);
+    return shapesCount(id);
 }
 
 

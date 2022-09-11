@@ -24,7 +24,9 @@ using Identifier = std::string;
  * Used for registry machinery, create new instance, etc
  */
 struct SHAPES2D_MODEL_EXPORT MetaInfo {
+    MetaInfo();
     Identifier id;
+    std::type_index typeIndex;
     FactoryPtr factory;
 };
 
