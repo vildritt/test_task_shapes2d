@@ -129,7 +129,7 @@ QString shapes2d::gui::MainWindow::translateShapeName(const shape::Identifier &i
     //  - use of macro
     //  - shapes classes not checked for existence (used as strings)
 
-    // NOET: here is check for class existence present - better than nothing...
+    // NOTE: here is check for class existence present (by assert) - better than nothing...
 #define REGISTER_SHAPE_TR(ClassName, TrName) \
     do { \
         assert(sizeof(ClassName) > 0); \
@@ -137,6 +137,7 @@ QString shapes2d::gui::MainWindow::translateShapeName(const shape::Identifier &i
     } while(0)
 
     if (m_trShapesNames.empty()) {
+        // init if empty
         auto reg = [this](const shape::Identifier &id, const QString& translated) {
             m_trShapesNames[id.c_str()] = translated;
         };
