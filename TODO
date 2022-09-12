@@ -3,14 +3,14 @@
         p - priority
         x = + done | - planned
 
-- [2] add translations
+- [1] add translations qs/ts
 
-- [3] notes about solutions - with perspective to project grow
+- [2] test: tests for qml
 
-- [4] check buildable on windows
-- [4] feat: icons for buttons
-? [4] logging
-? [4] license
-? [4] CI in github
-- [4] move model tests to model unit?
-- [4] submodule for model?
+- [4] build: check buildable on windows
+- [4] ui:    icons for buttons
+- [4] test:  move model tests to model unit
+- [4] conf:  submodule for model
+
+? [5] logging in model wo qDebug (use external logger like easylogging/lxx)
+? [5] travis CI in github?

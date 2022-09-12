@@ -88,7 +88,7 @@ public:
 
     /**
      * @brief stats observation
-     * TODO 2: add ability to unregister/disconnect - return some object with disconnect ability
+     * TODO 2: add ability to unregister/disconnect - return some object with disconnect ability. But better use some framework with observer impl
      */
     using OnStatUpdate = std::function<void (const shape::Identifier& id, int count)>;
     void registerStatUpdateHandler(OnStatUpdate handler);

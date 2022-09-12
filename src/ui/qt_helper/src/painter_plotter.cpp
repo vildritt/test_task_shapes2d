@@ -2,9 +2,20 @@
 
 #include <shapes2d/model.hpp>
 
+#include <QPoint>
+
+#include <cmath>
+
 
 namespace  {
 
+QPoint toQPoint(const shapes2d::Point2D& pt) noexcept
+{
+    return QPoint(
+                static_cast<int>(std::round(pt.x)),
+                static_cast<int>(std::round(pt.y))
+    );
+}
 
 struct PainterPlotterSetPainterGuard {
     shapes2d::gui::qt::PainterPlotter *plotter = nullptr;
@@ -52,9 +63,7 @@ void shapes2d::gui::qt::PainterPlotter::doSetBackgroundColor(Color color)
 void shapes2d::gui::qt::PainterPlotter::doLineTo(const Point2D &pt)
 {
     const auto& st = currState();
-    const auto pt1 = st.ptOut();
-    const auto pt2 = st.xyOut(pt);
-    m_painter->drawLine(pt1.x, pt1.y, pt2.x, pt2.y);
+    m_painter->drawLine(toQPoint(st.ptOut()), toQPoint(st.xyOut(pt)));
 }
 
 
@@ -76,10 +85,9 @@ void shapes2d::gui::qt::PainterPlotter::doPolygon(const std::vector<Point2D> &po
     const auto& st = currState();
 
     QPolygon polgon;
-    polgon.reserve(points.size());
+    polgon.reserve(static_cast<qsizetype>(points.size()));
     for(const auto& pt : points) {
-        const auto pts = st.xyOut(pt);
-        polgon.push_back(QPoint(pts.x, pts.y));
+        polgon.push_back(toQPoint(st.xyOut(pt)));
     }
 
     m_painter->drawPolygon(polgon);
