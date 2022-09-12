@@ -8,7 +8,7 @@
 
 namespace  {
 
-//TODO 2: move to sep. unit, publicate
+//TODO 2: refactor and move to sep. unit (make public)
 /**
  * simple composer - diagonal ordered /, full scaled
  */
@@ -40,7 +40,7 @@ protected:
         });
 
         // mirror x coordinate to get \ -> /
-        model->forEachShape([&prevShapeCenter, &maxCoord, &palette, &idx](const shapes2d::ShapePtr& shape) {
+        model->forEachShape([&maxCoord](const shapes2d::ShapePtr& shape) {
             if (!shape->isVisible()) {
                 return;
             }

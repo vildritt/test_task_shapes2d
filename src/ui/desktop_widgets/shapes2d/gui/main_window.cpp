@@ -124,7 +124,7 @@ void shapes2d::gui::MainWindow::makeAllShapesVisibleAndReplot() const
 QString shapes2d::gui::MainWindow::translateShapeName(const shape::Identifier &id)
 {
 
-    //TODO 1: rethink. Bad solution because:
+    //TODO 1: rethink. Bad solution, because:
     //  - manual listing for all available shapes
     //  - use of macro
     //  - shapes classes not checked for existence (used as strings)
