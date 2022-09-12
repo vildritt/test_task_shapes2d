@@ -33,5 +33,6 @@ endif()
 add_custom_target(shapes2d-docs
     SOURCES
         README.md
+        LICENSE.md
         TODO
 )
