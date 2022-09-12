@@ -26,4 +26,4 @@ add_executable(shapes2d_test_mso
 target_link_libraries(shapes2d_test_mso
     PRIVATE ${QT_COMPONENTS} shapes2d_model)
 
-add_test(NAME "model simple operations" COMMAND shapes2d_test_mso)
+add_test(NAME "model_simple_operations" COMMAND shapes2d_test_mso)
