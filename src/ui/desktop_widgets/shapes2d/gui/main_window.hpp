@@ -23,8 +23,6 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(shapes2d::Model* model);
 
-public slots:
-
 private:
     shapes2d::Model* m_model = nullptr;
 
